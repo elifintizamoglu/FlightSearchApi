@@ -1,4 +1,5 @@
 package com.elifintizam.FlightSearchApi.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -13,13 +14,17 @@ public class Flight {
     private String destinationAirport;
     private LocalDateTime departureTime;
     private LocalDateTime returnTime;
-    private float price;
+    private Float price;
+
+    public Flight(){
+
+    }
 
     public Flight(String departureAirport,
                   String destinationAirport,
                   LocalDateTime departureTime,
                   LocalDateTime returnTime,
-                  float price) {
+                  Float price) {
         this.departureAirport = departureAirport;
         this.destinationAirport = destinationAirport;
         this.departureTime = departureTime;
@@ -67,7 +72,7 @@ public class Flight {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 }

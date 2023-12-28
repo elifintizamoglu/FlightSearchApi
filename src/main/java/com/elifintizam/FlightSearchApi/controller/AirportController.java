@@ -3,9 +3,7 @@ package com.elifintizam.FlightSearchApi.controller;
 import com.elifintizam.FlightSearchApi.model.Airport;
 import com.elifintizam.FlightSearchApi.service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +18,30 @@ public class AirportController {
         this.airportService = airportService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/get/all")
     public List<Airport> getAirports(){
         return airportService.getAirports();
+    }
+
+    @GetMapping(path = "/get/{airportId}")
+    public Airport getAirport(@PathVariable("airportId") Long airportId){
+        return airportService.getAirport(airportId);
+    }
+
+    @PostMapping(path = "/add")
+    public void addAirport(@RequestBody Airport airport){
+        airportService.addAirport(airport);
+    }
+
+    @DeleteMapping(path = "/delete/{airportId}")
+    public void deleteAirport(@PathVariable("airportId") Long airportId){
+        airportService.deleteAirport(airportId);
+    }
+
+    @PutMapping(path = "/update/{airportId}")
+    public void updateAirport(@PathVariable("airportId") Long airportId,
+                              @RequestParam String city){
+        airportService.updateAirport(airportId,city);
     }
 
 
