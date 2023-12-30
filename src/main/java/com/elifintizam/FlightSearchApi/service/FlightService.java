@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,7 +28,7 @@ public class FlightService {
         return flightRepository.findAll();
     }
 
-    public Flight getFlight(Long flightId) {
+    public Flight getFlightById(Long flightId) {
         return flightRepository.findById(flightId).orElseThrow(() ->
                 new IllegalStateException("Flight with id " + flightId + " does not exists."));
     }
@@ -35,7 +36,7 @@ public class FlightService {
     public void addFlight(Flight flight) {
         if (airportRepository.existsById(flight.getDepartureAirport().getAirportId()) &&
                 airportRepository.existsById(flight.getArrivalAirport().getAirportId()) &&
-                flight.getDepartureAirport() != flight.getArrivalAirport() &&
+                flight.getDepartureAirport().getAirportId() != flight.getArrivalAirport().getAirportId() &&
                 flight.getDepartureTime().isAfter(LocalDateTime.now()) &&
                 flight.getReturnTime().isAfter(flight.getDepartureTime())) {
             flightRepository.save(flight);
@@ -99,5 +100,25 @@ public class FlightService {
         }
     }
 
+    public List<Flight> searchFlights(String departureCity, String arrivalCity, LocalDateTime departureTime, LocalDateTime returnTime) {
+        List<Flight> flights;
 
+        if (returnTime == null) {
+            flights = flightRepository.findOneWayFlights(departureCity, arrivalCity, departureTime);
+        } else {
+            flights = flightRepository.findTwoWayFlights(departureCity, arrivalCity, departureTime, returnTime);
+            List<Flight> twoWayFlights = new ArrayList<>();
+            for(Flight fly: flights){
+                twoWayFlights.add(fly);
+                Flight flight = new Flight(fly.getArrivalAirport(),fly.getDepartureAirport(),fly.getReturnTime(),null, fly.getPrice());
+                twoWayFlights.add(flight);
+            }
+            flights = twoWayFlights;
+        }
+
+        if (flights.isEmpty()) {
+            throw new IllegalStateException("There are no appropriate flights for entered information.");
+        }
+        return flights;
+    }
 }

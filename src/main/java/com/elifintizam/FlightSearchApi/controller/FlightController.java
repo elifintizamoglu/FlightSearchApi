@@ -2,6 +2,7 @@ package com.elifintizam.FlightSearchApi.controller;
 
 import com.elifintizam.FlightSearchApi.model.Flight;
 import com.elifintizam.FlightSearchApi.service.FlightService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,8 @@ public class FlightController {
     }
 
     @GetMapping(path = "/get/{flightId}")
-    public Flight getFlight(@PathVariable("flightId") Long flightId) {
-        return flightService.getFlight(flightId);
+    public Flight getFlightById(@PathVariable("flightId") Long flightId) {
+        return flightService.getFlightById(flightId);
     }
 
     @PostMapping(path = "/add")
@@ -47,6 +48,14 @@ public class FlightController {
                              @RequestParam(required = false) LocalDateTime returnTime,
                              @RequestParam(required = false) Float price) {
         flightService.updateFlight(flightId, departureAirportId, arrivalAirportId, departureTime, returnTime, price);
+    }
+
+    @GetMapping(path = "/search/")
+    public List<Flight> searchFlights(@RequestParam String departureCity,
+                                      @RequestParam String arrivalCity,
+                                      @RequestParam @JsonFormat(pattern = "yyyy-MM-dd") LocalDateTime departureTime,
+                                      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDateTime returnTime) {
+        return flightService.searchFlights(departureCity, arrivalCity, departureTime, returnTime);
     }
 
 
