@@ -10,8 +10,7 @@ public class Airport {
     private Long airportId;
     private String city;
 
-    public Airport(){
-    }
+    public Airport(){}
 
     public Airport(String city) {
         this.city = city;

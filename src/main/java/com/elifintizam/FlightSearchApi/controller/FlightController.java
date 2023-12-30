@@ -20,22 +20,22 @@ public class FlightController {
     }
 
     @GetMapping(path = "/get/all")
-    public List<Flight> getFlights(){
+    public List<Flight> getFlights() {
         return flightService.getFlights();
     }
 
     @GetMapping(path = "/get/{flightId}")
-    public Flight getFlight(@PathVariable("flightId") Long flightId){
+    public Flight getFlight(@PathVariable("flightId") Long flightId) {
         return flightService.getFlight(flightId);
     }
 
     @PostMapping(path = "/add")
-    public void addFlight(@RequestBody Flight flight){
+    public void addFlight(@RequestBody Flight flight) {
         flightService.addFlight(flight);
     }
 
     @DeleteMapping(path = "/delete/{flightId}")
-    public void deleteFlight(@PathVariable("flightId")Long flightId){
+    public void deleteFlight(@PathVariable("flightId") Long flightId) {
         flightService.deleteFlight(flightId);
     }
 
@@ -45,8 +45,8 @@ public class FlightController {
                              @RequestParam(required = false) Long arrivalAirportId,
                              @RequestParam(required = false) LocalDateTime departureTime,
                              @RequestParam(required = false) LocalDateTime returnTime,
-                             @RequestParam(required = false) Float price){
-        flightService.updateFlight(flightId,departureAirportId,arrivalAirportId,departureTime,returnTime, price);
+                             @RequestParam(required = false) Float price) {
+        flightService.updateFlight(flightId, departureAirportId, arrivalAirportId, departureTime, returnTime, price);
     }
 
 

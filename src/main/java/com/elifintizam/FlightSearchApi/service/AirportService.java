@@ -19,22 +19,25 @@ public class AirportService {
         this.airportRepository = airportRepository;
     }
 
-    public List<Airport> getAirports(){
+    public List<Airport> getAirports() {
         return airportRepository.findAll();
     }
 
     public Airport getAirport(Long airportId) {
         return airportRepository.findById(airportId)
-                .orElseThrow(()->new IllegalStateException("Airport with id " + airportId + " does not found."));
+                .orElseThrow(() -> new IllegalStateException("Airport with id " + airportId + " does not found."));
     }
 
     public void addAirport(Airport airport) {
+        if (airport.getCity() == null) {
+            throw new IllegalStateException("City area should not be empty.");
+        }
         airportRepository.save(airport);
     }
 
     public void deleteAirport(Long airportId) {
         boolean exists = airportRepository.existsById(airportId);
-        if(!exists){
+        if (!exists) {
             throw new IllegalStateException("Airport with id " + airportId + " does not found.");
         }
         airportRepository.deleteById(airportId);
@@ -43,9 +46,9 @@ public class AirportService {
     @Transactional
     public void updateAirport(Long airportId, String city) {
         Airport airport = airportRepository.findById(airportId)
-                .orElseThrow(()->new IllegalStateException("Airport with id " + airportId + " does not found."));
+                .orElseThrow(() -> new IllegalStateException("Airport with id " + airportId + " does not found."));
 
-        if(city != null && city.length()>0 && !Objects.equals(airport.getCity(),city)){
+        if (city != null && !Objects.equals(airport.getCity(), city)) {
             airport.setCity(city);
         }
     }

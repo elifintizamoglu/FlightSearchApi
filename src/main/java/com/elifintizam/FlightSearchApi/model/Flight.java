@@ -1,5 +1,7 @@
 package com.elifintizam.FlightSearchApi.model;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
@@ -11,9 +13,11 @@ public class Flight {
     private Long flightId;
     @ManyToOne
     @JoinColumn(name = "departureAirportId")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Airport departureAirport;
     @ManyToOne
     @JoinColumn(name = "arrivalAirportId")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Airport arrivalAirport;
     private LocalDateTime departureTime;
     private LocalDateTime returnTime;
