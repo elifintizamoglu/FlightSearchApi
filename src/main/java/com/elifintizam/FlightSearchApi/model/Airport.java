@@ -7,17 +7,18 @@ import jakarta.persistence.*;
 public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long airportId;
     private String city;
 
     public Airport(){
     }
+
     public Airport(String city) {
         this.city = city;
     }
 
-    public Long getId() {
-        return id;
+    public Long getAirportId() {
+        return airportId;
     }
 
     public String getCity() {

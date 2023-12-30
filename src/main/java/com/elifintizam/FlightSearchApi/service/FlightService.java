@@ -30,6 +30,12 @@ public class FlightService {
     }
 
     public void addFlight(Flight flight) {
+
+
+        /*List<Flight> list = flight.getDepartureAirport().getOutgoingFlights();
+        for(Flight fly : list){
+            System.out.println("outgoing-------- " + fly.getDepartureAirport().getCity());
+        }*/
         flightRepository.save(flight);
     }
 
@@ -43,29 +49,27 @@ public class FlightService {
 
     @Transactional
     public void updateFlight(Long flightId,
-                             String departureAirport,
-                             String destinationAirport,
+                             Long departureAirportId,
+                             Long arrivalAirportId,
                              LocalDateTime departureTime,
                              LocalDateTime returnTime,
                              Float price) {
         Flight flight = flightRepository.findById(flightId)
                 .orElseThrow(()->new IllegalStateException("Flight with id " + flightId + " does not exists."));
 
-        if(departureAirport != null &&
-                departureAirport.length() > 0 &&
+        /*if(departureAirportId != null &&
                 !Objects.equals(flight.getDepartureAirport(),departureAirport) &&
-                departureAirport != flight.getDestinationAirport()){
+                departureAirport != flight.getArrivalAirport()){
 
             flight.setDepartureAirport(departureAirport);
         }
 
-        if(destinationAirport != null &&
-                destinationAirport.length() > 0 &&
-                !Objects.equals(flight.getDestinationAirport(),destinationAirport) &&
-                destinationAirport != flight.getDepartureAirport()){
+        if(arrivalAirport != null &&
+                !Objects.equals(flight.getArrivalAirport(),arrivalAirport) &&
+                arrivalAirport != flight.getDepartureAirport()){
 
-            flight.setDestinationAirport(destinationAirport);
-        }
+            flight.setArrivalAirport(arrivalAirport);
+        }*/
 
         if(departureTime != null &&
                 !departureTime.isAfter(LocalDateTime.now()) &&

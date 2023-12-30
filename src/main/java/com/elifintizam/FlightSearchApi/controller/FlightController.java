@@ -41,12 +41,12 @@ public class FlightController {
 
     @PutMapping(path = "/update/{flightId}")
     public void updateFlight(@PathVariable("flightId") Long flightId,
-                             @RequestParam(required = false) String departureAirport,
-                             @RequestParam(required = false) String destinationAirport,
+                             @RequestParam(required = false) Long departureAirportId,
+                             @RequestParam(required = false) Long arrivalAirportId,
                              @RequestParam(required = false) LocalDateTime departureTime,
                              @RequestParam(required = false) LocalDateTime returnTime,
                              @RequestParam(required = false) Float price){
-        flightService.updateFlight(flightId,departureAirport,destinationAirport,departureTime,returnTime, price);
+        flightService.updateFlight(flightId,departureAirportId,arrivalAirportId,departureTime,returnTime, price);
     }
 
 
