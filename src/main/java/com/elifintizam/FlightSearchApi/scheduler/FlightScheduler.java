@@ -24,6 +24,13 @@ public class FlightScheduler {
         this.restTemplate = restTemplate;
     }
 
+
+    /*
+    * This is a scheduled method that will run at midnight every day.
+    * In this method, a GET request is send to a Mock Api
+    * which sends a list of Flights as a response.
+    * After getting response, flights are added to database.
+    */
     @Scheduled(cron = "0 0 0 * * ?")
     public void getAndSaveFlights() {
 
