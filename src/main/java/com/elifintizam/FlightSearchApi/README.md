@@ -11,7 +11,7 @@ The Flight Search API is a backend API that I developed using Spring Boot and Po
 
 ## API Usage
 
-All operation paths, flight search requests, and responses were added as screenshots from Swagger. Other requests will be described.
+Operation paths, flight search requests, and responses were added as screenshots from Swagger. Other requests is described.
 
 To try requests yourself, please clone this repository to your computer, open it in your IDE, and download dependencies by running the following command for Linux / macOS:
 ```bash
