@@ -1,5 +1,6 @@
 package com.elifintizam.FlightSearchApi.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -21,6 +22,7 @@ public class Flight {
     private Airport arrivalAirport;
     private LocalDateTime departureTime;
     private LocalDateTime returnTime;
+    @NotNull(message = "Price can not be null.")
     private Float price;
 
     public Flight(){}

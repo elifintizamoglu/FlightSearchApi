@@ -1,5 +1,6 @@
 package com.elifintizam.FlightSearchApi.service;
 
+import com.elifintizam.FlightSearchApi.exception.AirportNotFoundException;
 import com.elifintizam.FlightSearchApi.model.Airport;
 import com.elifintizam.FlightSearchApi.repository.AirportRepository;
 import jakarta.transaction.Transactional;
@@ -25,11 +26,11 @@ public class AirportService {
 
     public Airport getAirport(Long airportId) {
         return airportRepository.findById(airportId)
-                .orElseThrow(() -> new IllegalStateException("Airport with id " + airportId + " does not found."));
+                .orElseThrow(() -> new AirportNotFoundException(airportId));
     }
 
     public void addAirport(Airport airport) {
-        if (airport.getCity() == null) {
+        if (airport.getCity() == null || airport.getCity().length() == 0) {
             throw new IllegalStateException("City area should not be empty.");
         }
         airportRepository.save(airport);
@@ -38,7 +39,7 @@ public class AirportService {
     public void deleteAirport(Long airportId) {
         boolean exists = airportRepository.existsById(airportId);
         if (!exists) {
-            throw new IllegalStateException("Airport with id " + airportId + " does not found.");
+            throw new AirportNotFoundException(airportId);
         }
         airportRepository.deleteById(airportId);
     }
@@ -46,9 +47,9 @@ public class AirportService {
     @Transactional
     public void updateAirport(Long airportId, String city) {
         Airport airport = airportRepository.findById(airportId)
-                .orElseThrow(() -> new IllegalStateException("Airport with id " + airportId + " does not found."));
+                .orElseThrow(() -> new AirportNotFoundException(airportId));
 
-        if (city != null && !Objects.equals(airport.getCity(), city)) {
+        if (!Objects.equals(airport.getCity(), city)) {
             airport.setCity(city);
         }
     }
