@@ -11,6 +11,19 @@ Flight Search API is a backend API that I developed using Spring Boot and Postgr
 
 ## API Usage
 
+All operation paths, flight search requests and responses added as screenshots from swagger. Other requests will be described. 
+
+To try requests yourself please clone this repository to your computer, open it in your IDE, download dependencies by running command:
+
+```bash
+  ./mvnw clean install
+```
+or for Windows: 
+```bash
+  mvnw.cmd clean install
+```
+and run the project. Lastly, you can visit [swagger](http://localhost:8080/swagger-ui/index.html) and try the API.
+
 1. [All Operation Paths](#all-operation-paths)
 2. [One Way Flight Search Request Parameters](#one-way-flight-search-request-parameters)
 3. [One Way Flight Search Response](#one-way-flight-search-response)
@@ -53,12 +66,93 @@ Flight Search API is a backend API that I developed using Spring Boot and Postgr
 #### Bring flight with given id:
 
 ```http
-  GET /api/get/{flightId}
+  GET /api/flight/get/{flightId}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `Long` | **Required** |
+| `flightId`      | `Long` | **Required** `Bring flight with given id`|
 
+#### Add flight:
+
+```http
+  POST /api/flight/add
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Requests a body`      | `Flight` | `Add flight to database`  |
+
+#### Delete flight:
+
+```http
+  DELETE /api/flight/delete/{flightId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `flightId`      | `Long` | **Required** `Delete flight with given id`|
+
+
+#### Update flight:
+
+```http
+  PUT /api/flight/update/{flightId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `flightId, departureAirportId, arrivalAirportId, departureTime, returnTime, price`     | `Long` | **flightId Required** |
+
+
+#### Bring all airports:
+
+```http
+  GET /api/airport/get/all
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `-` | `-` | `-` |
+
+#### Bring airport with given id:
+
+```http
+  GET /api/airport/get/{airportId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `airportId`      | `Long` | **Required** `Bring airport with given id`|
+
+#### Add airport:
+
+```http
+  POST /api/airport/add
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Requests a body`      | `Airport` | `Add airport to database`  |
+
+#### Delete airport:
+
+```http
+  DELETE /api/airport/delete/{airportId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `airportId`      | `Long` | **Required** `Delete airport with given id`|
+
+
+#### Update airport:
+
+```http
+  PUT /api/airport/update/{airportId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `airportId, city`     | `Long` | **Required** |
 
 
