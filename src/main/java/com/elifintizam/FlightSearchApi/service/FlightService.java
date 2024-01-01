@@ -10,7 +10,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,6 +38,13 @@ public class FlightService {
                 new FlightNotFoundException(flightId));
     }
 
+    /*
+     * To be able to add a new flight,
+     * entered airports must exist in database,
+     * departureAirport and arrivalAirport must be different,
+     * departureTime must be in the future,
+     * and returnTime must be after the departureTime.
+     */
     public void addFlight(Flight flight) {
         if (airportRepository.existsById(flight.getDepartureAirport().getAirportId()) &&
                 airportRepository.existsById(flight.getArrivalAirport().getAirportId()) &&
@@ -101,13 +110,27 @@ public class FlightService {
         }
     }
 
-    public List<Flight> searchFlights(String departureCity, String arrivalCity, LocalDateTime departureTime, LocalDateTime returnTime) {
+    /*
+     * In this method, flights are searched according to departureCity, arrivalCity, and departureTime.
+     * A list of flights returned.
+     * If user enters returnTime, two-way flights are listed.
+     *
+     * Flight departureTime and returnTime are LocalDateTime in database,
+     * but departureTime and returnTime are taken as LocalDate from user to make it easier for them.
+     * To be able to compare two types and bring appropriate flights, LocalDate data is converted to LocalDateTime.
+     */
+    public List<Flight> searchFlights(String departureCity, String arrivalCity, LocalDate departureTime, LocalDate returnTime) {
         List<Flight> flights;
+        LocalDateTime startOfDepartureDay = departureTime.atStartOfDay();
+        LocalDateTime endOfDepartureDay = LocalDateTime.of(departureTime, LocalTime.MAX);
+        LocalDateTime startOfReturnDay, endOfReturnDay;
 
         if (returnTime == null) {
-            flights = flightRepository.findOneWayFlights(departureCity, arrivalCity, departureTime);
+            flights = flightRepository.findOneWayFlights(departureCity, arrivalCity, startOfDepartureDay, endOfDepartureDay);
         } else {
-            flights = flightRepository.findTwoWayFlights(departureCity, arrivalCity, departureTime, returnTime);
+            startOfReturnDay = returnTime.atStartOfDay();
+            endOfReturnDay = LocalDateTime.of(returnTime, LocalTime.MAX);
+            flights = flightRepository.findTwoWayFlights(departureCity, arrivalCity, startOfDepartureDay, endOfDepartureDay, startOfReturnDay, endOfReturnDay);
             List<Flight> twoWayFlights = new ArrayList<>();
             for (Flight fly : flights) {
                 twoWayFlights.add(fly);

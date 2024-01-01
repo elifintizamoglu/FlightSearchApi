@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -53,8 +54,8 @@ public class FlightController {
     @GetMapping(path = "/search/")
     public List<Flight> searchFlights(@RequestParam String departureCity,
                                       @RequestParam String arrivalCity,
-                                      @RequestParam @JsonFormat(pattern = "yyyy-MM-dd") LocalDateTime departureTime,
-                                      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDateTime returnTime) {
+                                      @RequestParam LocalDate departureTime,
+                                      @RequestParam(required = false) LocalDate returnTime) {
         return flightService.searchFlights(departureCity, arrivalCity, departureTime, returnTime);
     }
 
