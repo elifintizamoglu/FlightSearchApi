@@ -1,20 +1,18 @@
 # Flight Search API
 
-Flight Search API is a backend API that I developed using Spring Boot and PostgreSQL for the Amadeus Case Study.
+The Flight Search API is a backend API that I developed using Spring Boot and PostgreSQL for the Amadeus Case Study.
 
-### It has:
+#### It has:
 - CRUD operations.
-- One way and two way flight search operation.
-- A scheduled job that fetch flight data from mock api.
+- One-way and two-way flight search operations.
+- A scheduled job that fetches flight data from a mock API.
 - Authentication configurations.
 - API documentation with Swagger.
+- API Usage
 
-## API Usage
+All operation paths, flight search requests, and responses were added as screenshots from Swagger. Other requests will be described.
 
-All operation paths, flight search requests and responses added as screenshots from swagger. Other requests will be described. 
-
-To try requests yourself please clone this repository to your computer, open it in your IDE, download dependencies by running command:
-
+To try requests yourself, please clone this repository to your computer, open it in your IDE, and download dependencies by running the following command for Linux / macOS:
 ```bash
   ./mvnw clean install
 ```
@@ -22,7 +20,9 @@ or for Windows:
 ```bash
   mvnw.cmd clean install
 ```
-and run the project. Lastly, you can visit [swagger](http://localhost:8080/swagger-ui/index.html) and try the API.
+and run the project. While project is running, you can visit [here](http://localhost:8080/swagger-ui/index.html) and try the API.
+
+## API Usage
 
 1. [All Operation Paths](#all-operation-paths)
 2. [One Way Flight Search Request Parameters](#one-way-flight-search-request-parameters)
@@ -36,6 +36,7 @@ and run the project. Lastly, you can visit [swagger](http://localhost:8080/swagg
 ![All](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/all.png)
 
 ### One Way Flight Search Request Parameters
+Takes parameters and return one way flights.
 
 ![OneWay](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/SearchFlightOne.png)
 
@@ -44,6 +45,7 @@ and run the project. Lastly, you can visit [swagger](http://localhost:8080/swagg
 ![OneWayResponse](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/SearchFlightOneResponse.png)
 
 ### Two Way Flight Search Request Parameters
+Takes parameters and return two way flights.
 
 ![TwoWay](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/SearchFlightTwo.png)
 
