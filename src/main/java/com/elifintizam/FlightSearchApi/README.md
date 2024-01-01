@@ -2,13 +2,14 @@
 
 The Flight Search API is a backend API that I developed using Spring Boot and PostgreSQL for the Amadeus Case Study.
 
-#### It has:
+### It has:
 - CRUD operations.
 - One-way and two-way flight search operations.
 - A scheduled job that fetches flight data from a mock API.
 - Authentication configurations.
 - API documentation with Swagger.
-- API Usage
+
+## API Usage
 
 All operation paths, flight search requests, and responses were added as screenshots from Swagger. Other requests will be described.
 
@@ -21,8 +22,6 @@ or for Windows:
   mvnw.cmd clean install
 ```
 and run the project. While project is running, you can visit [here](http://localhost:8080/swagger-ui/index.html) and try the API.
-
-## API Usage
 
 1. [All Operation Paths](#all-operation-paths)
 2. [One Way Flight Search Request Parameters](#one-way-flight-search-request-parameters)
