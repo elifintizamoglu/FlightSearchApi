@@ -37,20 +37,20 @@ and run the project. While project is running, you can visit [here](http://local
 ### One Way Flight Search Request Parameters
 Takes parameters and return one way flights.
 
-![OneWay](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/SearchFlightOne.png)
+![OneWay](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/OneWaySearch.png)
 
 ### One Way Flight Search Response
 
-![OneWayResponse](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/SearchFlightOneResponse.png)
+![OneWayResponse](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/OneWaySearchResponse.png)
 
 ### Two Way Flight Search Request Parameters
 Takes parameters and return two way flights.
 
-![TwoWay](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/SearchFlightTwo.png)
+![TwoWay](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/TwoWaySearch.png)
 
 ### Two Way Flight Search Response
 
-![TwoWayResponse](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/SearchFlightTwoResponse.png)
+![TwoWayResponse](https://github.com/elifintizamoglu/FlightSearchApi/blob/master/src/main/resources/static/ApiScreenShots/TwoWayResponse.png)
 
 ### Api Usages for CRUD operations
 
