@@ -1,6 +1,6 @@
 # Flight Search API
 
-The Flight Search API is a backend API that I developed using Spring Boot and PostgreSQL for the Amadeus Case Study.
+The Flight Search API is a backend API that I developed using ***Spring Boot and PostgreSQL***  for the Amadeus Case Study.
 
 ### It has:
 - CRUD operations.
